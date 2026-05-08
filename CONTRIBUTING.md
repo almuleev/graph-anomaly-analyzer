@@ -1,20 +1,19 @@
-# Contributing Guide
+﻿# Contributing Guide
 
-Спасибо за интерес к проекту.
+Thanks for your interest in improving this project.
 
-## Общий подход
+## Contribution Model
 
-Репозиторий ведётся одним автором. Внешние предложения приветствуются и рассматриваются
-в best-effort режиме, без гарантированных сроков ревью.
+The repository is maintained by a single author. External contributions are welcome and reviewed on a best-effort basis.
 
-## Как предложить изменение
+## How to Contribute
 
-1. Создайте issue с контекстом проблемы или улучшения.
-2. Сделайте fork и отдельную ветку под изменение.
-3. Добавьте/обновите тесты, если меняется поведение.
-4. Откройте Pull Request с кратким описанием мотивации и результата.
+1. Open an issue with clear problem context or proposal.
+2. Create a focused branch for your change.
+3. Add or update tests when behavior changes.
+4. Open a pull request with a concise summary of what changed and why.
 
-## Локальный запуск
+## Local Setup
 
 ```bash
 python -m venv .venv
@@ -23,7 +22,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 pytest -q
 ```
 
-## Важные ограничения
+## Notes
 
-- Перед production-использованием выполните собственный QA и security-аудит.
-- Поддержка legacy-версий и выпуск hotfix по запросу не гарантируются.
+- Keep changes small and easy to review.
+- Before production use, run your own QA and security review.

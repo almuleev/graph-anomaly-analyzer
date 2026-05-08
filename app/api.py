@@ -22,7 +22,7 @@ from app.utils import dataframe_to_records
 
 app = FastAPI(
     title='graph-anomaly-analyzer',
-    version='0.1.0',
+    version='0.2.0',
     description='Прототип системы анализа технологических временных рядов.',
 )
 

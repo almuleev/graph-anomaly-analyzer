@@ -1,31 +1,33 @@
-# graph-anomaly-analyzer
+﻿# graph-anomaly-analyzer
 
-Python-проект (FastAPI + Streamlit) для анализа технологических временных рядов: поиск нестабильных режимов, краткосрочный прогноз и генерация отчётов.
+[English](README.md) | [Русский](README.ru.md)
+
+Python project (FastAPI + Streamlit) for industrial time-series analysis:
+unstable-mode detection, short-term forecasting, and report generation.
 
 ## Project Status
 
-> Stable MVP. Проект поддерживается автором в best-effort режиме.
-> Формальных SLA, гарантированных сроков ответа и регулярных релизов нет.
+> Stable MVP. Maintained by a single author on a best-effort basis.
+> No formal SLA or guaranteed release cadence.
 
-## Возможности
+## Features
 
-- загрузка данных в форматах CSV/XLSX;
-- валидация структуры и типов с понятными ошибками;
-- предобработка временного ряда (очистка, сортировка, заполнение пропусков);
-- поиск нестабильных участков (`normal` / `warning` / `unstable`);
-- объединение аномальных окон в интервалы событий;
-- прогноз по выбранному `sensor_*` и оценка краткосрочного риска;
-- текстовые объяснения причин нестабильности;
-- интерфейс Streamlit, API FastAPI и генерация HTML/TXT отчётов.
+- CSV/XLSX ingestion with schema validation and clear errors
+- Time-series preprocessing (sorting, deduplication, interpolation, scaling)
+- Instability detection (`normal` / `warning` / `unstable`)
+- Merge of abnormal windows into event intervals
+- Forecasting for selected `sensor_*` with risk scoring
+- Text explanations for detected instability intervals
+- Streamlit UI, FastAPI endpoints, and HTML/TXT report generation
 
-## Быстрый старт
+## Quick Start
 
-### 1) Требования
+### 1) Requirements
 
 - Python 3.10+
 - `pip`
 
-### 2) Установка
+### 2) Installation
 
 ```bash
 python -m venv .venv
@@ -38,95 +40,87 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 3) Запуск интерфейса
+### 3) Run UI
 
 ```bash
 python main.py ui
 ```
 
-После старта откройте `http://127.0.0.1:8501`.
+Open `http://127.0.0.1:8501`.
 
-### 4) Запуск API
+### 4) Run API
 
 ```bash
 python main.py api
 ```
 
-Swagger-документация будет доступна по адресу `http://127.0.0.1:8000/docs`.
+Swagger docs are available at `http://127.0.0.1:8000/docs`.
 
-### 5) CLI-анализ
+### 5) Run CLI analysis
 
 ```bash
 python main.py analyze --file data/demo_timeseries.csv --sensor sensor_2
 ```
 
-Отчёты сохраняются в `reports/`.
+Generated reports are saved to `reports/`.
 
-## Формат входных данных
+## Input Data Format
 
 ```text
 timestamp,sensor_1,sensor_2,sensor_3,...
 ```
 
-- `timestamp` обязателен;
-- остальные столбцы должны быть числовыми или приводимыми к числу;
-- пропуски допустимы.
+- `timestamp` is required
+- sensor columns must be numeric or convertible to numeric
+- missing values are allowed
 
-## API endpoints
+## API Endpoints
 
-- `POST /upload` - загрузка файла и создание сессии;
-- `POST /analyze` - запуск анализа;
-- `GET /results` - полные результаты анализа;
-- `GET /forecast` - прогноз и риск;
-- `GET /report` - получение отчёта.
+- `GET /health` - service health check
+- `POST /upload` - upload source file and create analysis session
+- `POST /analyze` - run analysis for a session
+- `GET /results` - full analysis payload
+- `GET /forecast` - forecast and risk metadata
+- `GET /report` - generate/download report
 
-## Структура репозитория
+## Repository Structure
 
 ```text
 .
-├── app/                  # Бизнес-логика, UI и API
-├── data/                 # Демо-данные
-├── models/               # Локальные артефакты моделей (в git не коммитятся)
-├── reports/              # Локальные отчёты (в git не коммитятся)
-├── tests/                # Автотесты
-├── .github/              # CI и шаблоны для GitHub
-├── main.py               # Точка входа CLI/UI/API
-├── requirements.txt
-└── requirements-dev.txt
+|-- app/                  # Core business logic, UI, API
+|-- data/                 # Demo datasets
+|-- models/               # Local model artifacts (not committed)
+|-- reports/              # Local reports (not committed)
+|-- tests/                # Automated tests
+|-- scripts/              # Utility scripts (including release packaging)
+|-- main.py               # CLI/UI/API entry point
+|-- requirements.txt
+`-- requirements-dev.txt
 ```
 
-## Разработка
+## Development
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
 pytest -q
 ```
 
-CI-пайплайн (`.github/workflows/ci.yml`) выполняет установку зависимостей, компиляционную smoke-проверку и тесты.
+CI is configured in `.github/workflows/ci.yml` and runs dependency install, compile smoke checks, and tests.
 
-## Документы репозитория
+## Collaboration Files
 
-В репозитории есть базовые служебные документы:
-
-- `LICENSE`
+- `LICENSE` (MIT)
 - `CONTRIBUTING.md`
-- `CODE_OF_CONDUCT.md`
 - `SECURITY.md`
-- `SUPPORT.md`
-- `CHANGELOG.md`
-- issue/PR templates в `.github/`
+- issue/PR templates in `.github/`
 
-## Данные и отказ от ответственности
+## Release Packaging
 
-Файлы в `data/` предназначены для демонстрации и разработки. Перед использованием в production убедитесь, что набор данных не содержит чувствительной информации.
+A helper script is provided:
 
-## Поддержка
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/create_release.ps1 -Version 0.2.0
+```
 
-- Проект поддерживается одним автором в best-effort формате.
-- Issues и PR принимаются к рассмотрению, но без гарантированных сроков ответа.
-- Ключевой фокус: стабильность MVP, читаемость кода и воспроизводимость запуска.
-- Использование кода в production требует вашего собственного QA и security-аудита.
-
-## Лицензия
-
-Проект распространяется по лицензии MIT. См. [LICENSE](LICENSE).
+Release archive is generated into `dist/` and is ready to upload to GitHub Release assets.
+The script also generates a `*.sha256` checksum file for verification.

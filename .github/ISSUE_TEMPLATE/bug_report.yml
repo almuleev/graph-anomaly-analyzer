@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         Thanks for the report. Please include enough context to reproduce the issue.
-        Reports are reviewed on a best-effort basis.
 
   - type: textarea
     id: summary
@@ -24,7 +23,7 @@ body:
       label: Steps to reproduce
       placeholder: |
         1. Run `python main.py api`
-        2. Send POST /upload with ...
+        2. Send request to `/upload`
         3. Observe error ...
     validations:
       required: true
@@ -50,9 +49,3 @@ body:
     attributes:
       label: Python version
       placeholder: "3.11.x"
-
-  - type: textarea
-    id: environment
-    attributes:
-      label: Environment
-      description: OS, run mode (CLI/UI/API), and any relevant context.

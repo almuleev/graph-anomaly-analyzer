@@ -26,11 +26,6 @@ def _load_demo_dataset() -> tuple[str, object]:
     return DEMO_PATH.name, load_timeseries(DEMO_PATH)
 
 
-def _load_uploaded_dataset(uploaded_file) -> tuple[str, object]:
-    file_bytes = uploaded_file.getvalue()
-    return uploaded_file.name, load_timeseries(file_bytes, uploaded_file.name)
-
-
 def _list_local_datasets() -> list[Path]:
     if not DATA_DIR.exists():
         return []
