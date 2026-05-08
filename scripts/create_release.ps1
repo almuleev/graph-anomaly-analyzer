@@ -21,6 +21,7 @@ if (Test-Path -LiteralPath $archivePath) {
 
 $releaseItems = @(
     "app",
+    "installer",
     "data",
     "models",
     "reports",
@@ -33,6 +34,7 @@ $releaseItems = @(
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "LICENSE",
+    "app_launcher.py",
     "main.py",
     "pytest.ini",
     "README.md",

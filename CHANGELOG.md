@@ -12,12 +12,16 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Russian documentation entrypoint `README.ru.md` with full quick-start parity.
 - Release packaging helper script `scripts/create_release.ps1` that builds a clean zip archive in `dist/`.
 - Lightweight GitHub templates for bug reports, feature requests, and pull requests.
+- Windows launcher entrypoint `app_launcher.py` for one-click UI startup.
+- Build script `scripts/build_windows_installer.ps1` for portable bundle and setup installer artifacts.
+- Inno Setup template `installer/windows/graph-anomaly-analyzer.iss`.
 
 ### Changed
 
 - Reworked README documentation to an English-first format and added a Russian mirror.
 - Added language switch links between English and Russian README versions.
 - Kept a minimal collaboration baseline for GitHub (`LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, CI workflow).
+- Expanded developer dependencies with `pyinstaller` for Windows release builds.
 
 ### Removed
 

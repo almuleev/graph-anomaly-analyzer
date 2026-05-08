@@ -64,6 +64,14 @@ python main.py analyze --file data/demo_timeseries.csv --sensor sensor_2
 
 Сформированные отчеты сохраняются в `reports/`.
 
+## Установка для обычного пользователя (Windows)
+
+Если не хотите вручную ставить Python:
+
+1. Откройте последний GitHub Release.
+2. Скачайте `graph-anomaly-analyzer-setup-vX.Y.Z.exe`.
+3. Запустите установщик и откройте приложение через ярлык в меню Пуск/на рабочем столе.
+
 ## Формат входных данных
 
 ```text
@@ -106,6 +114,39 @@ pytest -q
 ```
 
 CI настроен в `.github/workflows/ci.yml`: установка зависимостей, compile smoke-check и тесты.
+
+## One-Click Windows сборка
+
+Для обычного пользователя публикуйте в GitHub Releases:
+
+- `graph-anomaly-analyzer-setup-vX.Y.Z.exe` (рекомендуется)
+- `graph-anomaly-analyzer-windows-vX.Y.Z.zip` (portable-версия)
+
+Сборка артефактов на Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0
+```
+
+Чтобы размер сборки был стабильным, делайте сборку в чистом виртуальном окружении только с зависимостями проекта.
+
+Если `python` не доступен в `PATH`, передайте явный путь:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0 -PythonExe "C:\Path\To\python.exe"
+```
+
+Что нужно на машине сборки:
+
+- Python 3.10+
+- зависимости из `requirements.txt` и `requirements-dev.txt`
+- Inno Setup (`iscc` в `PATH`) для генерации `.exe` установщика
+
+Если Inno Setup пока не установлен, можно собрать только portable-архив:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0 -SkipInstaller
+```
 
 ## Файлы для совместной работы
 
