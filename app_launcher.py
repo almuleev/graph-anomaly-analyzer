@@ -67,6 +67,8 @@ def main() -> None:
         host,
         '--server.port',
         str(port),
+        '--server.headless',
+        'true',
         '--global.developmentMode',
         'false',
         '--browser.gatherUsageStats',

@@ -22,6 +22,7 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Added language switch links between English and Russian README versions.
 - Kept a minimal collaboration baseline for GitHub (`LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, CI workflow).
 - Expanded developer dependencies with `pyinstaller` for Windows release builds.
+- Updated Windows launcher behavior to avoid opening duplicate browser tabs.
 
 ### Removed
 
