@@ -64,6 +64,14 @@ python main.py analyze --file data/demo_timeseries.csv --sensor sensor_2
 
 Generated reports are saved to `reports/`.
 
+## End-User Installation (Windows)
+
+If you do not want to install Python manually:
+
+1. Open the latest GitHub Release.
+2. Download `graph-anomaly-analyzer-setup-vX.Y.Z.exe`.
+3. Run installer and start the app from desktop/start menu shortcut.
+
 ## Input Data Format
 
 ```text
@@ -106,6 +114,39 @@ pytest -q
 ```
 
 CI is configured in `.github/workflows/ci.yml` and runs dependency install, compile smoke checks, and tests.
+
+## One-Click Windows Build
+
+For non-technical users, publish installer assets in GitHub Releases:
+
+- `graph-anomaly-analyzer-setup-vX.Y.Z.exe` (recommended)
+- `graph-anomaly-analyzer-windows-vX.Y.Z.zip` (portable bundle)
+
+Build these assets on Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0
+```
+
+For stable bundle size, run build in a clean virtual environment with only project dependencies.
+
+If Python is not available as `python` in `PATH`, pass explicit executable:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0 -PythonExe "C:\Path\To\python.exe"
+```
+
+Requirements for build machine:
+
+- Python 3.10+
+- dependencies from `requirements.txt` and `requirements-dev.txt`
+- Inno Setup (`iscc` in `PATH`) for `.exe` installer generation
+
+If Inno Setup is not installed yet, you can still build only the portable bundle:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows_installer.ps1 -Version 0.2.0 -SkipInstaller
+```
 
 ## Collaboration Files
 

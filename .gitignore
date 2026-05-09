@@ -22,6 +22,7 @@ reports/*.txt
 # Packaging/build artifacts
 build/
 dist/
+*.spec
 *.egg-info/
 pip-wheel-metadata/
 
@@ -54,3 +55,4 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+/.build-venv
